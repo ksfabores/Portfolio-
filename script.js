@@ -17,6 +17,36 @@ navLinks.forEach(link => {
         navMenu.classList.remove('active');
     });
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.getElementById("login-form");
+    const logoutSection = document.getElementById("logout");
+    const loginSection = document.getElementById("login");
+
+    // Handle login
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Check credentials
+        if (username === "deejay" && password === "admin123") {
+            alert("Login successful!");
+            loginSection.style.display = "none"; // Hide login section
+            logoutSection.style.display = "block"; // Show logout section
+        } else {
+            alert("Invalid username or password.");
+        }
+    });
+
+    // Handle logout
+    document.getElementById("logout-button").addEventListener("click", function() {
+        alert("Logged out successfully!");
+        logoutSection.style.display = "none"; // Hide logout section
+        loginSection.style.display = "block"; // Show login section
+        loginForm.reset(); // Reset the form
+    });
+});
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
@@ -58,7 +88,7 @@ navLinks.forEach(link => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        
+       
         if (targetSection) {
             const offsetTop = targetSection.offsetTop - 80;
             window.scrollTo({
@@ -149,7 +179,7 @@ skillBars.forEach(bar => {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
-    
+   
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -175,7 +205,7 @@ window.addEventListener('load', () => {
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    
+   
     function updateCounter() {
         start += increment;
         if (start < target) {
@@ -228,7 +258,7 @@ document.querySelectorAll('.skill-item, .tool-item, .cert-item').forEach(item =>
     item.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-5px) scale(1.02)';
     });
-    
+   
     item.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1)';
     });
@@ -279,7 +309,7 @@ window.addEventListener('scroll', () => {
 // Add loading animation
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-    
+   
     // Remove any loading spinners or add entrance animations
     setTimeout(() => {
         document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(element => {
@@ -313,9 +343,3 @@ window.addEventListener('scroll', throttledScrollHandler);
 // Console welcome message
 console.log(`
 🚀 Personal Portfolio Website
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Thanks for checking out the console!
-This portfolio is built with vanilla HTML, CSS, and JavaScript.
-Feel free to explore the code and reach out if you have any questions.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`);
